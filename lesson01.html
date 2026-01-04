@@ -1,0 +1,764 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="navy sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>课时一：命题逻辑的基本概念 - 离散数学快速突击教程</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-2459343d.css">
+        <link rel="stylesheet" href="css/chrome-ae938929.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "navy";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-d043ce4f.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-283512c6.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">离散数学快速突击教程</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="课时一命题逻辑的基本概念"><a class="header" href="#课时一命题逻辑的基本概念">课时一：命题逻辑的基本概念</a></h1>
+<blockquote>
+<p><strong>考点分布</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>考点</th><th>重要程度</th><th>分值</th><th>题型</th></tr>
+</thead>
+<tbody>
+<tr><td>1. 命题</td><td>★★★</td><td>0 ~ 3</td><td>选择、填空</td></tr>
+<tr><td>2. 命题联结词</td><td>★★★★★</td><td>3 ~ 6</td><td>填空</td></tr>
+<tr><td>3. 命题公式及其赋值</td><td>★★★★★</td><td>0 ~ 6</td><td>解答</td></tr>
+</tbody>
+</table>
+</div>
+</blockquote>
+<hr>
+<h2 id="1-命题"><a class="header" href="#1-命题">1. 命题</a></h2>
+<h3 id="-概念讲解"><a class="header" href="#-概念讲解">📖 概念讲解</a></h3>
+<p>同学们好！今天我们要学习命题逻辑。首先，什么是<strong>命题</strong>呢？</p>
+<p><strong>命题</strong>就是能判断其真值的陈述句。</p>
+<p>让我来解释一下这句话：</p>
+<ol>
+<li><strong>陈述句</strong>：必须是陈述句，不能是疑问句、祈使句、感叹句</li>
+<li><strong>能判断真值</strong>：必须能判断真假（真或假，用1或0表示）</li>
+<li><strong>唯一真值</strong>：每个命题在确定的情况下，只有一个确定的真值</li>
+</ol>
+<h3 id="-重要概念"><a class="header" href="#-重要概念">💡 重要概念</a></h3>
+<ul>
+<li><strong>真值</strong>：真、假（用1、0表示）</li>
+<li><strong>真命题</strong>：真值为真的命题</li>
+<li><strong>假命题</strong>：真值为假的命题</li>
+<li><strong>原子命题（简单命题）</strong>：不能再被分解成更简单的命题</li>
+<li><strong>复合命题</strong>：由简单命题通过联结词联结而成的命题</li>
+</ul>
+<h3 id="-判断步骤"><a class="header" href="#-判断步骤">🔍 判断步骤</a></h3>
+<p>给定一个句子，判断它是否为命题，分两步：</p>
+<ol>
+<li>
+<p><strong>首先判定它是否为陈述句</strong></p>
+<ul>
+<li>疑问句 ❌ “你今天有空吗？”</li>
+<li>祈使句 ❌ “请勿吸烟！”</li>
+<li>感叹句 ❌ “太好了！”</li>
+</ul>
+</li>
+<li>
+<p><strong>其次判断它是否有唯一真值</strong></p>
+<ul>
+<li>有确定真值 ✅ “2是偶数”（真）</li>
+<li>有确定真值 ✅ “3大于5”（假）</li>
+<li>悖论 ❌ “我正在说谎”（无法判断）</li>
+</ul>
+</li>
+</ol>
+<h3 id="-例题"><a class="header" href="#-例题">📝 例题</a></h3>
+<p><strong>例题1</strong>：下列语句中，哪一个选项是命题？（）</p>
+<p>A. 你今天有空吗？<br>B. 请勿随地吐痰！<br>C. 我正在说谎。<br>D. 2是偶数。</p>
+<p><strong>解答</strong>：</p>
+<ul>
+<li>A是疑问句，不是陈述句 ❌</li>
+<li>B是祈使句，不是陈述句 ❌</li>
+<li>C是悖论，无法判断真值 ❌</li>
+<li>D是陈述句，有唯一真值（真）✅</li>
+</ul>
+<p><strong>答案：D</strong></p>
+<hr>
+<h2 id="2-命题联结词"><a class="header" href="#2-命题联结词">2. 命题联结词</a></h2>
+<p>这是本节课的<strong>重点内容</strong>，需要熟练掌握！</p>
+<p>命题联结词是用来连接简单命题，构成复合命题的符号。我们主要学习<strong>5个基本联结词</strong>。</p>
+<h3 id="21-否定"><a class="header" href="#21-否定">2.1 否定（¬）</a></h3>
+<p><strong>符号</strong>：¬ 或 -<br><strong>含义</strong>：非、不</p>
+<p><strong>真值表</strong>：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>p</th><th>¬p</th></tr>
+</thead>
+<tbody>
+<tr><td>0</td><td>1</td></tr>
+<tr><td>1</td><td>0</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>记忆技巧</strong>：直接取反，0变1，1变0。</p>
+<h3 id="22-合取"><a class="header" href="#22-合取">2.2 合取（∧）</a></h3>
+<p><strong>符号</strong>：∧<br><strong>含义</strong>：且、并且、和</p>
+<p><strong>真值表</strong>：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>p</th><th>q</th><th>p∧q</th></tr>
+</thead>
+<tbody>
+<tr><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>0</td><td>1</td><td>0</td></tr>
+<tr><td>1</td><td>0</td><td>0</td></tr>
+<tr><td>1</td><td>1</td><td>1</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>记忆技巧</strong>：<strong>只有两个都为真（1）时，结果才为真（1）</strong>。其他情况都是0。</p>
+<p><strong>自然语言对应</strong>：</p>
+<ul>
+<li>“既……，又……”</li>
+<li>“不但……，而且……”</li>
+<li>“虽然……，但是……”</li>
+<li>“一面……，一面……”</li>
+</ul>
+<h3 id="23-析取"><a class="header" href="#23-析取">2.3 析取（∨）</a></h3>
+<p><strong>符号</strong>：∨<br><strong>含义</strong>：或、或者</p>
+<p><strong>真值表</strong>：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>p</th><th>q</th><th>p∨q</th></tr>
+</thead>
+<tbody>
+<tr><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>1</td><td>0</td><td>1</td></tr>
+<tr><td>1</td><td>1</td><td>1</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>记忆技巧</strong>：<strong>只有两个都为假（0）时，结果才为假（0）</strong>。其他情况都是1。</p>
+<p>⚠️ <strong>注意</strong>：这里的“或“是<strong>可兼或</strong>（可以同时成立）。如果题目明确说是“不可兼或“（互斥），需要用其他方式表示。</p>
+<h3 id="24-蕴涵"><a class="header" href="#24-蕴涵">2.4 蕴涵（→）</a></h3>
+<p><strong>符号</strong>：→<br><strong>含义</strong>：如果……则……、如果……那么……</p>
+<p><strong>真值表</strong>：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>p</th><th>q</th><th>p→q</th></tr>
+</thead>
+<tbody>
+<tr><td>0</td><td>0</td><td>1</td></tr>
+<tr><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>1</td><td>0</td><td>0</td></tr>
+<tr><td>1</td><td>1</td><td>1</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>记忆技巧</strong>：<strong>只有前件为真（1）且后件为假（0）时，结果才为假（0）</strong>。其他情况都是1。</p>
+<p>这个真值表可能有点反直觉，记住一句话：<strong>“假命题可以推出任何命题”</strong>。</p>
+<h3 id="-为什么假命题可以推出任何命题"><a class="header" href="#-为什么假命题可以推出任何命题">💡 为什么“假命题可以推出任何命题“？</a></h3>
+<p>这是一个逻辑上的约定，可能和我们的直觉不太一样。让我用例子来解释：</p>
+<p><strong>例子1</strong>：如果 \(2 + 2 = 5\)，则 \(1 + 1 = 2\)</p>
+<ul>
+<li>前提 \(p\)：“\(2 + 2 = 5\)” 是<strong>假的</strong>（0）</li>
+<li>结论 \(q\)：“\(1 + 1 = 2\)” 是<strong>真的</strong>（1）</li>
+<li>根据真值表：当 \(p=0, q=1\) 时，\(p \to q = 1\)（真）</li>
+</ul>
+<p><strong>例子2</strong>：如果 \(2 + 2 = 5\)，则 \(1 + 1 = 3\)</p>
+<ul>
+<li>前提 \(p\)：“\(2 + 2 = 5\)” 是<strong>假的</strong>（0）</li>
+<li>结论 \(q\)：“\(1 + 1 = 3\)” 是<strong>假的</strong>（0）</li>
+<li>根据真值表：当 \(p=0, q=0\) 时，\(p \to q = 1\)（真）</li>
+</ul>
+<p><strong>为什么这样定义？</strong></p>
+<ol>
+<li>
+<p><strong>逻辑一致性</strong>：如果一个前提本身就是假的，我们无法从它推断出任何有意义的信息。因此，无论结论是什么，这个“如果…则…“的命题在逻辑上都被认为是<strong>没有违反的</strong>（即真）。</p>
+</li>
+<li>
+<p><strong>数学上的合理性</strong>：在数学证明中，我们通常只关注当前提为真时会发生什么。当前提为假时，这个蕴含关系本身不会被“证伪“，所以被认为是真的。</p>
+</li>
+<li>
+<p><strong>只有一种情况是假的</strong>：只有当 \(p\) 为真但 \(q\) 为假时，我们说“如果p则q“是假的（因为前提成立但结论不成立，说明这个蕴含关系被推翻了）。</p>
+</li>
+</ol>
+<p><strong>总结</strong>：</p>
+<ul>
+<li>如果前提 \(p\) 是假的，那么无论 \(q\) 是什么，\(p \to q\) 都为真（1）</li>
+<li>只有当 \(p\) 为真，\(q\) 为假时，\(p \to q\) 才为假（0）</li>
+</ul>
+<h3 id="25-等价"><a class="header" href="#25-等价">2.5 等价（↔）</a></h3>
+<p><strong>符号</strong>：↔ 或 ⇔<br><strong>含义</strong>：当且仅当、充要条件</p>
+<p><strong>真值表</strong>：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>p</th><th>q</th><th>p↔q</th></tr>
+</thead>
+<tbody>
+<tr><td>0</td><td>0</td><td>1</td></tr>
+<tr><td>0</td><td>1</td><td>0</td></tr>
+<tr><td>1</td><td>0</td><td>0</td></tr>
+<tr><td>1</td><td>1</td><td>1</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>记忆技巧</strong>：<strong>两个命题相同（都为0或都为1）时，结果为1；不同时为0</strong>。</p>
+<h3 id="-运算优先级"><a class="header" href="#-运算优先级">⚠️ 运算优先级</a></h3>
+<p>在做复合命题时，一定要注意运算顺序：</p>
+<p><strong>优先级从高到低</strong>：</p>
+<pre><code>() &gt; ¬ &gt; ∧ &gt; ∨ &gt; → &gt; ↔
+</code></pre>
+<p><strong>记忆口诀</strong>：括号最高，否定次之，然后合取、析取，最后蕴涵、等价。</p>
+<p><strong>示例</strong>：</p>
+<ul>
+<li>\(\neg p \wedge q\) 表示 \((\neg p) \wedge q\)，不是 \(\neg (p \wedge q)\)</li>
+<li>\(p \vee q \rightarrow r\) 表示 \((p \vee q) \rightarrow r\)</li>
+</ul>
+<hr>
+<h2 id="3-命题符号化"><a class="header" href="#3-命题符号化">3. 命题符号化</a></h2>
+<p>这是<strong>高频考点</strong>，需要大量练习！</p>
+<p>将自然语言转化为符号表达式，关键是理解各种表达的对应关系。</p>
+<h3 id="-符号化技巧"><a class="header" href="#-符号化技巧">📝 符号化技巧</a></h3>
+<h4 id="31-合取的符号化"><a class="header" href="#31-合取的符号化">3.1 合取（∧）的符号化</a></h4>
+<p><strong>例1</strong>：小智和小红是学生。</p>
+<p><strong>分析</strong>：这里的“和“表示“都是“，需要分别表示两个命题。</p>
+<p>设 \(p\)：小智是学生<br>设 \(q\)：小红是学生</p>
+<p>符号化：\(p \wedge q\)</p>
+<hr>
+<p><strong>例2</strong>：小智和小红是同学。</p>
+<p><strong>分析</strong>：⚠️ <strong>注意！</strong> 这里的“是同学“是一个整体概念，不能拆分。</p>
+<p>设 \(p\)：小智和小红是同学</p>
+<p>符号化：\(p\)（这是一个原子命题）</p>
+<p><strong>详细解释</strong>：</p>
+<p>为什么“小智和小红是同学“不能像例1那样拆分成 \(p \wedge q\) 呢？</p>
+<p>关键区别在于：</p>
+<ul>
+<li>
+<p><strong>例1“是学生“</strong>：这是<strong>属性概念</strong>，可以分别判断</p>
+<ul>
+<li>“小智是学生” ✅ 可以单独判断真假</li>
+<li>“小红是学生” ✅ 可以单独判断真假</li>
+<li>所以可以拆分成两个命题，用 \(p \wedge q\)</li>
+</ul>
+</li>
+<li>
+<p><strong>例2“是同学“</strong>：这是<strong>关系概念</strong>，需要至少两个人才能成立</p>
+<ul>
+<li>“小智是同学” ❌ 这句话不完整，无法判断（同学关系需要至少两个人）</li>
+<li>“小红是同学” ❌ 同样不完整</li>
+<li>“小智和小红是同学” ✅ 这才是一个完整的、可判断真假的命题</li>
+<li>所以这是一个<strong>原子命题</strong>，不能拆分，直接用 \(p\)</li>
+</ul>
+</li>
+</ul>
+<p><strong>记忆技巧</strong>：</p>
+<ul>
+<li>如果“和“后面的词是<strong>属性词</strong>（如“学生“、“老师”、“江苏人“等），通常可以拆分</li>
+<li>如果“和“后面的词是<strong>关系词</strong>（如“同学“、“朋友”、“邻居“等），通常是一个整体，不能拆分</li>
+</ul>
+<hr>
+<h4 id="32-析取的符号化"><a class="header" href="#32-析取的符号化">3.2 析取（∨）的符号化</a></h4>
+<p><strong>例3</strong>：小红喜欢唱歌或跳舞。</p>
+<p>设 \(p\)：小红喜欢唱歌<br>设 \(q\)：小红喜欢跳舞</p>
+<p>符号化：\(p \vee q\)（可兼或）</p>
+<p><strong>详细解释</strong>：</p>
+<p><strong>什么是“可兼或“？</strong></p>
+<p>“可兼或“的意思是：<strong>两个选项可以同时成立</strong>。</p>
+<p>在这个例子中，小红可以：</p>
+<ul>
+<li>只喜欢唱歌（\(p=1, q=0\)）</li>
+<li>只喜欢跳舞（\(p=0, q=1\)）</li>
+<li><strong>同时喜欢唱歌和跳舞</strong>（\(p=1, q=1\)）✅ 这是允许的！</li>
+<li>两个都不喜欢（\(p=0, q=0\)）</li>
+</ul>
+<p>根据析取（∨）的真值表：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>p</th><th>q</th><th>p∨q</th></tr>
+</thead>
+<tbody>
+<tr><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>1</td><td>0</td><td>1</td></tr>
+<tr><td><strong>1</strong></td><td><strong>1</strong></td><td><strong>1</strong></td></tr>
+</tbody>
+</table>
+</div>
+<p>所以 \(p \vee q\) 表示：<strong>至少喜欢其中一个</strong>（可以只喜欢一个，也可以两个都喜欢）。</p>
+<hr>
+<p><strong>例4</strong>：小智是江苏人或者江西人。</p>
+<p><strong>分析</strong>：这里的“或“是<strong>互斥的</strong>（不可能既是江苏人又是江西人），需要用特殊形式。</p>
+<p>设 \(p\)：小智是江苏人<br>设 \(q\)：小智是江西人</p>
+<p>符号化：\((p \wedge \neg q) \vee (\neg p \wedge q)\)</p>
+<p>这表示：要么是江苏人但不是江西人，要么不是江苏人但是江西人。</p>
+<p><strong>例3 vs 例4 对比说明</strong>：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>对比项</th><th>例3：喜欢唱歌或跳舞（可兼或）</th><th>例4：江苏人或者江西人（互斥）</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>是否可以同时成立？</strong></td><td>✅ 可以！小红可以同时喜欢唱歌和跳舞</td><td>❌ 不可以！一个人不能同时是江苏人和江西人</td></tr>
+<tr><td><strong>使用什么符号？</strong></td><td>\(p \vee q\)</td><td>\((p \wedge \neg q) \vee (\neg p \wedge q)\)</td></tr>
+<tr><td><strong>为什么不同？</strong></td><td>逻辑上允许 \(p=1, q=1\)</td><td>逻辑上不可能 \(p=1, q=1\)，需要排除这种情况</td></tr>
+<tr><td><strong>判断方法</strong></td><td>如果两个选项在现实中可以同时成立 → 可兼或</td><td>如果两个选项在现实中不能同时成立 → 互斥</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>记忆技巧</strong>：</p>
+<ul>
+<li>看到“喜欢…或…“、“会…或…“这类表示<strong>能力/爱好</strong>的，通常是<strong>可兼或</strong></li>
+<li>看到“是…或…“、“来自…或…“这类表示<strong>身份/籍贯</strong>的，需要看是否互斥</li>
+</ul>
+<hr>
+<h4 id="33-蕴涵的符号化-"><a class="header" href="#33-蕴涵的符号化-">3.3 蕴涵（→）的符号化 ⭐⭐⭐</a></h4>
+<p>这是<strong>最容易出错</strong>的地方，需要特别注意！</p>
+<p><strong>关键记忆点</strong>：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>自然语言表达</th><th>符号化</th><th>说明</th></tr>
+</thead>
+<tbody>
+<tr><td>“只要p，就q”</td><td>\(p \rightarrow q\)</td><td></td></tr>
+<tr><td>“p仅当q”</td><td>\(p \rightarrow q\)</td><td></td></tr>
+<tr><td>“因为p，所以q”</td><td>\(p \rightarrow q\)</td><td></td></tr>
+<tr><td><strong>“只有q才p”</strong></td><td><strong>\(q \rightarrow p\)</strong></td><td>⚠️ <strong>顺序反转！</strong></td></tr>
+<tr><td>“除非q才p”</td><td>\(q \rightarrow p\)</td><td>⚠️ <strong>顺序反转！</strong></td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>记忆技巧</strong>：</p>
+<ul>
+<li>看到“只要“、“仅当”，直接按顺序：前→后</li>
+<li>看到“只有“、“除非”，<strong>顺序要反转</strong>：后→前</li>
+</ul>
+<p><strong>例题</strong>：</p>
+<p>① 只要 \(a\) 能被4整除，则 \(a\) 一定能被2整除。</p>
+<p>设 \(p\)：\(a\) 能被4整除<br>设 \(q\)：\(a\) 能被2整除</p>
+<p>符号化：\(p \rightarrow q\)</p>
+<hr>
+<p>② 只有 \(a\) 能被4整除，则 \(a\) 才能被2整除。</p>
+<p><strong>分析</strong>：注意这里是“只有q，才p“的形式，需要反转。</p>
+<p>符号化：\(q \rightarrow p\)（不是 \(p \rightarrow q\)！）</p>
+<hr>
+<p>③ \(a\) 能被4整除，仅当 \(a\) 能被2整除。</p>
+<p>符号化：\(p \rightarrow q\)</p>
+<hr>
+<h4 id="34-等价的符号化"><a class="header" href="#34-等价的符号化">3.4 等价（↔）的符号化</a></h4>
+<p><strong>例5</strong>：\(2 + 3 = 5\) 的充要条件是 \(\sqrt{3}\) 是无理数。</p>
+<p>设 \(p\)：\(2 + 3 = 5\)<br>设 \(q\)：\(\sqrt{3}\) 是无理数</p>
+<p>符号化：\(p \leftrightarrow q\)</p>
+<hr>
+<h3 id="-符号化关键词总结"><a class="header" href="#-符号化关键词总结">📋 符号化关键词总结</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>联结词</th><th>关键词</th></tr>
+</thead>
+<tbody>
+<tr><td>∧</td><td>“既……，又……”、“不但……，而且……”、“虽然……，但是……”</td></tr>
+<tr><td>∨</td><td>“或”（可兼或）</td></tr>
+<tr><td>→</td><td>“只要p，就q”、“p仅当q”、“因为p，所以q”<br><strong>“只有q才p”</strong>（注意顺序！）、<strong>“除非q才p”</strong>（注意顺序！）</td></tr>
+<tr><td>↔</td><td>“当且仅当”、“充要条件”</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="4-命题公式及其赋值"><a class="header" href="#4-命题公式及其赋值">4. 命题公式及其赋值</a></h2>
+<h3 id="41-基本概念"><a class="header" href="#41-基本概念">4.1 基本概念</a></h3>
+<ol>
+<li>
+<p><strong>命题变元</strong>：取值1（真）或0（假）的变元，如 \(p, q, r\) 等。</p>
+<p><strong>详细解释</strong>：</p>
+<p><strong>变元</strong>（variable）就是可以取不同值的<strong>变量</strong>，类似于数学中的 \(x, y\)。</p>
+<ul>
+<li><strong>命题变元</strong>：表示一个命题的变量，只能取两个值：<strong>1（真）或 0（假）</strong></li>
+<li>例如：\(p\) 可以表示“今天下雨“，那么 \(p=1\) 表示“今天下雨“为真，\(p=0\) 表示“今天下雨“为假</li>
+<li>常见的命题变元用字母表示：\(p, q, r, s, A, B\) 等</li>
+</ul>
+<p><strong>类比理解</strong>：</p>
+<ul>
+<li>数学中的变量 \(x\) 可以取很多值（如 1, 2, 3, …）</li>
+<li>命题变元 \(p\) 只能取两个值（0 或 1）</li>
+</ul>
+</li>
+<li>
+<p><strong>合式公式</strong>：将命题变元用联结词或圆括号按一定逻辑关系联结起来的符号串。</p>
+</li>
+<li>
+<p><strong>赋值</strong>：给公式中的每个命题变元指定一个真值（0或1）。</p>
+<ul>
+<li><strong>成真赋值</strong>：使公式为1的赋值</li>
+<li><strong>成假赋值</strong>：使公式为0的赋值</li>
+</ul>
+</li>
+</ol>
+<h3 id="42-真值表的制作"><a class="header" href="#42-真值表的制作">4.2 真值表的制作</a></h3>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>确定变元个数：\(n\) 个变元 → \(2^n\) 行</li>
+<li>列出所有赋值组合（按二进制顺序：000, 001, 010, 011, …）</li>
+<li>从内到外逐步计算（注意优先级）</li>
+<li>标注结果：结果为1 → 成真赋值；结果为0 → 成假赋值</li>
+</ol>
+<p><strong>例题</strong>：写出公式 \((\neg p \wedge q) \rightarrow \neg r\) 的真值表。</p>
+<p><strong>解答</strong>：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>p</th><th>q</th><th>r</th><th>¬p</th><th>¬p∧q</th><th>¬r</th><th>(¬p∧q)→¬r</th></tr>
+</thead>
+<tbody>
+<tr><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+<tr><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+<tr><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+<tr><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>成真赋值</strong>：(0,0,0), (0,0,1), (0,1,0), (1,0,0), (1,0,1), (1,1,0), (1,1,1)<br><strong>成假赋值</strong>：(0,1,1)</p>
+<h3 id="43-公式的分类"><a class="header" href="#43-公式的分类">4.3 公式的分类</a></h3>
+<p>设 \(A\) 为任一命题公式：</p>
+<ol>
+<li>
+<p><strong>重言式（永真式）</strong>：\(A\) 在它的各种赋值下取值均为真</p>
+<ul>
+<li>所有赋值都是成真赋值</li>
+<li>例如：\(p \vee \neg p\)</li>
+</ul>
+</li>
+<li>
+<p><strong>矛盾式（永假式）</strong>：\(A\) 在它的各种赋值下取值均为假</p>
+<ul>
+<li>所有赋值都是成假赋值</li>
+<li>例如：\(p \wedge \neg p\)</li>
+</ul>
+</li>
+<li>
+<p><strong>可满足式</strong>：\(A\) 不是矛盾式（至少有一个成真赋值）</p>
+<ul>
+<li>大部分公式都是可满足式</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="-本节要点总结"><a class="header" href="#-本节要点总结">📚 本节要点总结</a></h2>
+<h3 id="-必须掌握"><a class="header" href="#-必须掌握">✅ 必须掌握</a></h3>
+<ol>
+<li>
+<p><strong>5个联结词的真值表</strong>（必须背熟）</p>
+<ul>
+<li>¬（否定）：取反</li>
+<li>∧（合取）：只有11→1</li>
+<li>∨（析取）：只有00→0</li>
+<li>→（蕴涵）：只有10→0</li>
+<li>↔（等价）：相同→1，不同→0</li>
+</ul>
+</li>
+<li>
+<p><strong>运算优先级</strong>：() &gt; ¬ &gt; ∧ &gt; ∨ &gt; → &gt; ↔</p>
+</li>
+<li>
+<p><strong>符号化的关键技巧</strong></p>
+<ul>
+<li>“只有q才p” → \(q \rightarrow p\)（顺序反转！）</li>
+<li>“p仅当q” → \(p \rightarrow q\)</li>
+<li>互斥的“或“ → \((p \wedge \neg q) \vee (\neg p \wedge q)\)</li>
+</ul>
+</li>
+<li>
+<p><strong>真值表的制作方法</strong></p>
+</li>
+</ol>
+<h3 id="-易错点提醒"><a class="header" href="#-易错点提醒">💡 易错点提醒</a></h3>
+<ol>
+<li>❌ “只有q才p” 写成 \(p \rightarrow q\)（正确：\(q \rightarrow p\)）</li>
+<li>❌ “小智和小红是同学” 写成 \(p \wedge q\)（正确：\(p\)，这是原子命题）</li>
+<li>❌ 运算优先级搞错，导致计算结果错误</li>
+</ol>
+<hr>
+<h2 id="练习题"><a class="header" href="#练习题">练习题</a></h2>
+<h3 id="练习1"><a class="header" href="#练习1">练习1</a></h3>
+<p>指出下列语句哪些是命题，哪些不是。如果是命题，指出它的真值。</p>
+<p>(1) 计算机有视觉吗？</p>
+<p>(2) 明天我去看球赛。</p>
+<p>(3) 请勿大声喧哗！</p>
+<p>(4) 不存在最大的质数。</p>
+<hr>
+<h3 id="练习2"><a class="header" href="#练习2">练习2</a></h3>
+<p>下列语句是命题的有 ( )。</p>
+<p>A. 明天下午开会吗？</p>
+<p>B. 2014 年元旦是星期六。</p>
+<p>C. \(5x + 1 &gt; 11\)</p>
+<p>D. 请保持安静！</p>
+<hr>
+<h3 id="练习3"><a class="header" href="#练习3">练习3</a></h3>
+<p>下列句子中有（ ）个命题。</p>
+<p>(1) 我是老师。</p>
+<p>(2) 禁止吸烟！</p>
+<p>(3) 蚊子是鸟类动物。</p>
+<p>(4) 我正在说谎。</p>
+<p>(5) 月亮比地球大。</p>
+<p>A. 1<br>B. 2<br>C. 3<br>D. 4</p>
+<hr>
+<h3 id="练习4"><a class="header" href="#练习4">练习4</a></h3>
+<p>将下列命题符号化：</p>
+<p>(1) 王强身体很好，成绩也很好。</p>
+<p>(2) 小静只能挑选 202 或 203 房间。</p>
+<p>(3) 如果 \(a\) 和 \(b\) 是偶数，则 \(a + b\) 是偶数。</p>
+<hr>
+<h3 id="练习5"><a class="header" href="#练习5">练习5</a></h3>
+<p>（判断题）记 \(A\)：小李今天18岁，\(B\)：小李今年19岁，则“小李今年18岁或19岁“可以翻译成 \(A \vee B\)。（ ）</p>
+<hr>
+<h3 id="练习6"><a class="header" href="#练习6">练习6</a></h3>
+<p>设 \(P\): 我听课，\(Q\): 我做课堂笔记。命题“我一边听课，一边做课堂笔记“符号化为________。</p>
+<hr>
+<h3 id="练习7"><a class="header" href="#练习7">练习7</a></h3>
+<p>设 \(p\) 表示“天下大雨“，\(q\) 表示“他在室内运动“，则命题“除非天下大雨，否则他不在室内运动“符号化为 ( )。</p>
+<p>A. \(p \rightarrow q\)<br>B. \(p \wedge q\)<br>C. \(\neg p \rightarrow \neg q\)<br>D. \(\neg p \lor q\)</p>
+<hr>
+<h3 id="练习8"><a class="header" href="#练习8">练习8</a></h3>
+<p>\(n\) 个命题变元组成的命题公式共有______种不同真值指派情况。</p>
+<hr>
+<h3 id="练习9"><a class="header" href="#练习9">练习9</a></h3>
+<p>命题公式 \((\neg P \rightarrow Q) \rightarrow (\neg Q \lor P)\) 中成真赋值的个数为（ ）。</p>
+<p>A. 0<br>B. 1<br>C. 2<br>D. 3</p>
+<hr>
+<h3 id="练习10"><a class="header" href="#练习10">练习10</a></h3>
+<p>下列命题公式中，哪个是永真式（ ）。</p>
+<p>A. \(p \wedge \neg q\)<br>B. \(p \to q\)<br>C. \((\neg p \lor q) \lor p\)<br>D. \((\neg p \wedge q) \wedge p\)</p>
+<hr>
+<h3 id="练习11"><a class="header" href="#练习11">练习11</a></h3>
+<p>求命题公式 \(((Q \to P) \lor \neg R) \to (P \to (Q \lor R))\) 的真值表。</p>
+<hr>
+<p><strong>下一课</strong>：我们将学习命题逻辑的等值演算，这是逻辑推理的基础！👋</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="introduction.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="lesson02.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="introduction.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="lesson02.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-c2a407aa.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>
