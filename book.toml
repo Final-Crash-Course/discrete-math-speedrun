@@ -11,3 +11,4 @@ build-dir = "book"
 [output.html]
 mathjax-support = true
 default-theme = "navy"
+base-url = "/discrete-math-speedrun"
