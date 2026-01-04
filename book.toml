@@ -1,0 +1,13 @@
+[book]
+title = "离散数学快速突击教程"
+authors = ["学习助手"]
+language = "zh-CN"
+
+[build]
+build-dir = "book"
+
+[preprocessor.links]
+
+[output.html]
+mathjax-support = true
+default-theme = "navy"
