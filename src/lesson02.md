@@ -425,10 +425,55 @@ Q \vee \neg((\neg P \lor Q) \land P) &\Leftrightarrow Q \vee (\neg(\neg P \lor Q
 \end{align}
 \\]
 
-**说明**：
-- 第1步：从上面的中间结果开始
-- 第2步：分配律展开
-- 第3步：消去矛盾项（如 \\(P \land \neg P = 0\\)，\\(Q \land \neg Q = 0\\)，\\(R \land \neg R = 0\\)）
+**详细说明（一步一步）**：
+
+**第1步**：从上面的中间结果开始
+- 当前公式：\\(((P \land \neg Q) \vee R) \land (\neg R \vee \neg P \vee Q)\\)
+- 观察结构：左边是 \\(((P \land \neg Q) \vee R)\\)，右边是 \\((\neg R \vee \neg P \vee Q)\\)（三个项的析取）
+
+**第2步**：分配律展开（关键步骤！）
+
+这里需要应用分配律：\\(A \land (B \vee C \vee D) = (A \land B) \vee (A \land C) \vee (A \land D)\\)
+
+**具体过程**：
+
+1. **识别结构**：
+   - 设 \\(A = (P \land \neg Q) \vee R\\)（左边整个部分）
+   - 右边有三个项：\\(B = \neg R\\)，\\(C = \neg P\\)，\\(D = Q\\)
+   - 所以原式 = \\(A \land (B \vee C \vee D)\\)
+
+2. **应用分配律**：
+   - 根据分配律：\\(A \land (B \vee C \vee D) = (A \land B) \vee (A \land C) \vee (A \land D)\\)
+   - 代入得到：\\(((P \land \neg Q) \vee R) \land (\neg R \vee \neg P \vee Q) = [((P \land \neg Q) \vee R) \land \neg R] \vee [((P \land \neg Q) \vee R) \land \neg P] \vee [((P \land \neg Q) \vee R) \land Q]\\)
+
+3. **对每一项再次应用分配律**（因为 \\(A = (P \land \neg Q) \vee R\\) 本身也是析取式）：
+
+   **第一项**：\\(((P \land \neg Q) \vee R) \land \neg R\\)
+   - 应用分配律：\\((X \vee Y) \land Z = (X \land Z) \vee (Y \land Z)\\)
+   - 设 \\(X = P \land \neg Q\\)，\\(Y = R\\)，\\(Z = \neg R\\)
+   - 得到：\\((P \land \neg Q \land \neg R) \vee (R \land \neg R)\\)
+
+   **第二项**：\\(((P \land \neg Q) \vee R) \land \neg P\\)
+   - 同样应用分配律
+   - 得到：\\((P \land \neg Q \land \neg P) \vee (R \land \neg P)\\)
+
+   **第三项**：\\(((P \land \neg Q) \vee R) \land Q\\)
+   - 同样应用分配律
+   - 得到：\\((P \land \neg Q \land Q) \vee (R \land Q)\\)
+
+4. **合并所有项**：
+   - 将所有三项用 ∨ 连接起来：
+   - \\((P \land \neg Q \land \neg R) \vee (R \land \neg R) \vee (P \land \neg Q \land \neg P) \vee (R \land \neg P) \vee (P \land \neg Q \land Q) \vee (R \land Q)\\)
+
+**第3步**：消去矛盾项
+- \\(P \land \neg P = 0\\)（P 和 非P 不能同时为真）
+- \\(Q \land \neg Q = 0\\)（Q 和 非Q 不能同时为真）
+- \\(R \land \neg R = 0\\)（R 和 非R 不能同时为真）
+- 所以以下项可以删除（因为 \\(0 \vee X = X\\)）：
+  - \\(P \land \neg Q \land \neg P = 0\\)（包含 \\(P \land \neg P\\)）
+  - \\(P \land \neg Q \land Q = 0\\)（包含 \\(Q \land \neg Q\\)）
+  - \\(R \land \neg R = 0\\)
+- 最终得到：\\((P \land \neg Q \land \neg R) \vee (R \land \neg P) \vee (R \land Q)\\)
 
 **析取范式**：\\((P \land \neg Q \land \neg R) \vee (R \land \neg P) \vee (R \land Q)\\)
 
@@ -481,10 +526,47 @@ Q \vee \neg((\neg P \lor Q) \land P) &\Leftrightarrow Q \vee (\neg(\neg P \lor Q
 | \\(p \land q \land r\\) | 1 1 1 | \\(m_7\\) | \\(\neg p \lor \neg q \lor \neg r\\) | 1 1 1 | \\(M_7\\) |
 
 **记忆规律**：
+
 - **极小项 \\(m_i\\)**：把成真赋值看作二进制数，转换为十进制就是下标 \\(i\\)
-  - 例如：\\((0,1,0)_2 = 2_{10}\\) → \\(m_2\\)
+  
+  **例如**：
+  - 成真赋值：\\((p, q, r) = (0, 1, 0)\\)
+  - 看作二进制数：\\(010_2\\)
+  - 转换为十进制：\\(0 \times 2^2 + 1 \times 2^1 + 0 \times 2^0 = 0 + 2 + 0 = 2\\)
+  - 所以对应：\\(m_2\\)
+  
+  **用公式表示**：
+  
+  \\[
+  (0,1,0)\_{2} = 2\_{10} \Rightarrow m\_2
+  \\]
+  
+  或者写成：\\((0,1,0)\_{2} = 2\_{10}\\) → \\(m\_2\\)
+
 - **极大项 \\(M_i\\)**：把成假赋值看作二进制数，转换为十进制就是下标 \\(i\\)
-  - 例如：\\((1,0,0)_2 = 4_{10}\\) → \\(M_4\\)
+  
+  **例如**：
+  - 成假赋值：\\((p, q, r) = (1, 0, 0)\\)
+  - 看作二进制数：\\(100_2\\)
+  - 转换为十进制：\\(1 \times 2^2 + 0 \times 2^1 + 0 \times 2^0 = 4 + 0 + 0 = 4\\)
+  - 所以对应：\\(M_4\\)
+  
+  **用公式表示**：
+  
+  \\[
+  (1,0,0)\_{2} = 4\_{10} \Rightarrow M\_4
+  \\]
+  
+  或者写成：\\((1,0,0)\_{2} = 4\_{10}\\) → \\(M\_4\\)
+
+**更直观的理解**：
+
+\\[
+\begin{align}
+\text{极小项 } m_i &: \text{成真赋值} \rightarrow \text{二进制} \rightarrow \text{十进制} = i \\\\
+\text{极大项 } M_i &: \text{成假赋值} \rightarrow \text{二进制} \rightarrow \text{十进制} = i
+\end{align}
+\\]
 
 **重要关系**：
 \\[\neg m_i \Leftrightarrow M_i, \quad \neg M_i \Leftrightarrow m_i\\]
