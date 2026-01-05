@@ -697,6 +697,207 @@ Q \vee \neg((\neg P \lor Q) \land P) &\Leftrightarrow Q \vee (\neg(\neg P \lor Q
 \end{align}
 \\]
 
+**详细说明每一步**：
+
+**第1步**：蕴涵的等值式
+- \\(P \to (Q \lor R) \Leftrightarrow \neg P \vee (Q \vee R)\\)
+
+**第2步**：蕴涵的等值式
+- \\((A \to B) \Leftrightarrow \neg A \vee B\\)
+- \\((\neg P \vee Q \vee R) \to \neg Q \Leftrightarrow \neg(\neg P \vee Q \vee R) \vee \neg Q\\)
+
+**第3步**：德摩根律
+- \\(\neg(\neg P \vee Q \vee R) = P \land \neg Q \land \neg R\\)
+
+**第4步**：补全变元（关键步骤！）
+
+这一步的目的是将 \\(\neg Q\\) 补全成包含所有变元（P、Q、R）的形式，以便后续展开成极小项。
+
+**关键理解**：
+- 当前公式：\\((P \land \neg Q \land \neg R) \vee \neg Q\\)
+- \\(\neg Q\\) 只包含变元 Q，缺少 P 和 R
+- 需要补全 P 和 R，使 \\(\neg Q\\) 变成包含所有变元的合取式
+
+**补全方法**：使用公式 \\(A \Leftrightarrow A \vee (B \land \neg B)\\)
+
+对于 \\(\neg Q\\)，需要补全 P 和 R：
+
+1. **补全 P**：\\(\neg Q \Leftrightarrow \neg Q \vee (P \land \neg P)\\)
+   - 因为 \\(P \land \neg P = 0\\)，所以 \\(\neg Q \vee 0 = \neg Q\\)（等值）
+
+2. **补全 R**：\\(\neg Q \Leftrightarrow \neg Q \vee (R \land \neg R)\\)
+   - 同样，\\(R \land \neg R = 0\\)，所以等值
+
+3. **同时补全 P 和 R**：
+   - \\(\neg Q \Leftrightarrow \neg Q \vee ((P \land \neg P) \vee (R \land \neg R))\\)
+   - 但更常用的方法是：\\(\neg Q \Leftrightarrow \neg Q \land (P \vee \neg P) \land (R \vee \neg R)\\)
+   - 因为 \\(A \land 1 = A\\)（排中律：\\(P \vee \neg P = 1\\)）
+
+**具体变换**：
+\\[
+\neg Q \Leftrightarrow \neg Q \land 1 \land 1 \Leftrightarrow \neg Q \land (P \vee \neg P) \land (R \vee \neg R)
+\\]
+
+**进一步展开**（使用结合律、交换律和吸收律）：
+
+**详细步骤**：
+
+**步骤1**：重新排列顺序（结合律和交换律）
+\\[
+\neg Q \land (P \vee \neg P) \land (R \vee \neg R) \Leftrightarrow ((P \vee \neg P) \land \neg Q) \land (R \vee \neg R)
+\\]
+
+**说明**：
+- 使用**结合律**：\\((A \land B) \land C \Leftrightarrow A \land (B \land C)\\)
+- 使用**交换律**：\\(A \land B \Leftrightarrow B \land A\\)
+- 将 \\(\neg Q\\) 和 \\((P \vee \neg P)\\) 先结合，然后与 \\((R \vee \neg R)\\) 结合
+
+**步骤2**：添加 \\((Q \vee \neg Q)\\)（关键步骤！）
+
+\\[
+((P \vee \neg P) \land \neg Q) \land (R \vee \neg R) \Leftrightarrow (P \vee \neg P) \land (Q \vee \neg Q) \land (R \vee \neg R) \land \neg Q
+\\]
+
+**为什么可以添加 \\((Q \vee \neg Q)\\)？**
+
+**关键理解**：使用**吸收律**和**排中律**
+
+1. **排中律**：\\(Q \vee \neg Q = 1\\)（永真式）
+
+2. **吸收律**：\\(A \land (A \vee B) = A\\)
+   - 应用到我们的情况：\\(\neg Q \land (Q \vee \neg Q) = \neg Q\\)
+   - 因为 \\(Q \vee \neg Q = 1\\)，所以 \\(\neg Q \land 1 = \neg Q\\)
+
+3. **具体变换**：
+   \\[
+   \begin{align}
+   ((P \vee \neg P) \land \neg Q) \land (R \vee \neg R) &\Leftrightarrow (P \vee \neg P) \land \neg Q \land (R \vee \neg R) \\\\
+   &\Leftrightarrow (P \vee \neg P) \land \neg Q \land (Q \vee \neg Q) \land (R \vee \neg R) \\\\
+   &\Leftrightarrow (P \vee \neg P) \land (Q \vee \neg Q) \land (R \vee \neg R) \land \neg Q
+   \end{align}
+   \\]
+
+**说明**：
+- 第2行：在 \\(\neg Q\\) 后面添加 \\((Q \vee \neg Q)\\)，因为 \\(\neg Q \land (Q \vee \neg Q) = \neg Q\\)
+- 第3行：使用**交换律**重新排列顺序，将所有 \\((X \vee \neg X)\\) 放在前面，\\(\neg Q\\) 放在最后
+
+**为什么这样排列？**
+- 为了后续使用分配律展开时更方便
+- 所有变元的"或"形式放在一起：\\((P \vee \neg P) \land (Q \vee \neg Q) \land (R \vee \neg R)\\)
+- 然后与 \\(\neg Q\\) 合取，这样展开后会自动过滤掉包含 \\(Q\\)（而不是 \\(\neg Q\\)）的项
+
+**最终结果**：
+\\[
+(P \vee \neg P) \land (Q \vee \neg Q) \land (R \vee \neg R) \land \neg Q
+\\]
+
+**第5步**：分配律展开
+
+将 \\((P \vee \neg P) \land (Q \vee \neg Q) \land (R \vee \neg R) \land \neg Q\\) 展开：
+
+1. **先展开前三个**：\\((P \vee \neg P) \land (Q \vee \neg Q) \land (R \vee \neg R)\\)
+   - 这会产生 \\(2 \times 2 \times 2 = 8\\) 个合取项
+   - 但每个都要与 \\(\neg Q\\) 合取
+
+2. **与 \\(\neg Q\\) 合取后**：
+   - 如果合取项中包含 \\(Q\\)（而不是 \\(\neg Q\\)），则结果为 0（矛盾）
+   - 只保留包含 \\(\neg Q\\) 的项
+
+3. **最终结果**：
+   - \\((P \land \neg Q \land R)\\)（对应 \\(P, \neg Q, R\\)）
+   - \\((\neg P \land \neg Q \land R)\\)（对应 \\(\neg P, \neg Q, R\\)）
+   - \\((\neg P \land \neg Q \land \neg R)\\)（对应 \\(\neg P, \neg Q, \neg R\\)）
+   - 注意：\\((P \land \neg Q \land \neg R)\\) 已经在前面了，所以不重复
+
+**验证**：展开过程（详细步骤）
+
+**起始公式**：
+\\[
+(P \vee \neg P) \land (Q \vee \neg Q) \land (R \vee \neg R) \land \neg Q
+\\]
+
+**第1步**：展开前三个合取式
+
+使用分配律展开 \\((P \vee \neg P) \land (Q \vee \neg Q) \land (R \vee \neg R)\\)：
+
+**方法**：逐步应用分配律
+
+1. **先展开前两个**：\\((P \vee \neg P) \land (Q \vee \neg Q)\\)
+   - 应用分配律：\\((A \vee B) \land (C \vee D) = (A \land C) \vee (A \land D) \vee (B \land C) \vee (B \land D)\\)
+   - 得到：\\((P \land Q) \vee (P \land \neg Q) \vee (\neg P \land Q) \vee (\neg P \land \neg Q)\\)
+
+2. **再与第三个展开**：\\([(P \land Q) \vee (P \land \neg Q) \vee (\neg P \land Q) \vee (\neg P \land \neg Q)] \land (R \vee \neg R)\\)
+   - 对每一项应用分配律：
+     - \\((P \land Q) \land (R \vee \neg R) = (P \land Q \land R) \vee (P \land Q \land \neg R)\\)
+     - \\((P \land \neg Q) \land (R \vee \neg R) = (P \land \neg Q \land R) \vee (P \land \neg Q \land \neg R)\\)
+     - \\((\neg P \land Q) \land (R \vee \neg R) = (\neg P \land Q \land R) \vee (\neg P \land Q \land \neg R)\\)
+     - \\((\neg P \land \neg Q) \land (R \vee \neg R) = (\neg P \land \neg Q \land R) \vee (\neg P \land \neg Q \land \neg R)\\)
+
+3. **合并所有项**（用 ∨ 连接）：
+   \\[
+   \begin{align}
+   &(P \land Q \land R) \vee (P \land Q \land \neg R) \vee (P \land \neg Q \land R) \vee (P \land \neg Q \land \neg R) \\\\
+   &\quad \vee (\neg P \land Q \land R) \vee (\neg P \land Q \land \neg R) \vee (\neg P \land \neg Q \land R) \vee (\neg P \land \neg Q \land \neg R)
+   \end{align}
+   \\]
+
+**说明**：这8个合取项对应了3个变元的所有 \\(2^3 = 8\\) 种可能组合。
+
+**第2步**：与 \\(\neg Q\\) 合取
+
+现在将上面的8个项与 \\(\neg Q\\) 合取：
+
+\\[
+\begin{align}
+&[(P \land Q \land R) \vee (P \land Q \land \neg R) \vee (P \land \neg Q \land R) \vee (P \land \neg Q \land \neg R) \\\\
+&\quad \vee (\neg P \land Q \land R) \vee (\neg P \land Q \land \neg R) \vee (\neg P \land \neg Q \land R) \vee (\neg P \land \neg Q \land \neg R)] \land \neg Q
+\end{align}
+\\]
+
+**关键**：使用分配律，\\(\neg Q\\) 要分配到每一项
+
+\\[
+\begin{align}
+\Leftrightarrow &(P \land Q \land R \land \neg Q) \vee (P \land Q \land \neg R \land \neg Q) \vee (P \land \neg Q \land R \land \neg Q) \vee (P \land \neg Q \land \neg R \land \neg Q) \\\\
+&\quad \vee (\neg P \land Q \land R \land \neg Q) \vee (\neg P \land Q \land \neg R \land \neg Q) \vee (\neg P \land \neg Q \land R \land \neg Q) \vee (\neg P \land \neg Q \land \neg R \land \neg Q)
+\end{align}
+\\]
+
+**第3步**：消去矛盾项
+
+检查每一项，如果同时包含 \\(Q\\) 和 \\(\neg Q\\)，则为矛盾（0），可以删除：
+
+1. \\((P \land Q \land R \land \neg Q)\\) → 包含 \\(Q\\) 和 \\(\neg Q\\) → **矛盾，删除** ❌
+2. \\((P \land Q \land \neg R \land \neg Q)\\) → 包含 \\(Q\\) 和 \\(\neg Q\\) → **矛盾，删除** ❌
+3. \\((P \land \neg Q \land R \land \neg Q)\\) → 只包含 \\(\neg Q\\) → **保留** ✅
+   - 简化：\\((P \land \neg Q \land R)\\)（因为 \\(\neg Q \land \neg Q = \neg Q\\)）
+4. \\((P \land \neg Q \land \neg R \land \neg Q)\\) → 只包含 \\(\neg Q\\) → **保留** ✅
+   - 简化：\\((P \land \neg Q \land \neg R)\\)
+5. \\((\neg P \land Q \land R \land \neg Q)\\) → 包含 \\(Q\\) 和 \\(\neg Q\\) → **矛盾，删除** ❌
+6. \\((\neg P \land Q \land \neg R \land \neg Q)\\) → 包含 \\(Q\\) 和 \\(\neg Q\\) → **矛盾，删除** ❌
+7. \\((\neg P \land \neg Q \land R \land \neg Q)\\) → 只包含 \\(\neg Q\\) → **保留** ✅
+   - 简化：\\((\neg P \land \neg Q \land R)\\)
+8. \\((\neg P \land \neg Q \land \neg R \land \neg Q)\\) → 只包含 \\(\neg Q\\) → **保留** ✅
+   - 简化：\\((\neg P \land \neg Q \land \neg R)\\)
+
+**第4步**：最终结果
+
+只保留不矛盾的4项：
+
+\\[
+(P \land \neg Q \land R) \vee (P \land \neg Q \land \neg R) \vee (\neg P \land \neg Q \land R) \vee (\neg P \land \neg Q \land \neg R)
+\\]
+
+**总结**：
+- 从8个可能的组合中，只保留了包含 \\(\neg Q\\)（而不是 \\(Q\\)）的4个组合
+- 这4个组合正好对应所有 \\(Q = 0\\) 的情况
+
+**第6步**：对应到极小项
+- \\((P \land \neg Q \land \neg R)\\) → 成真赋值 (1,0,0) → \\(m_4\\)
+- \\((P \land \neg Q \land R)\\) → 成真赋值 (1,0,1) → \\(m_5\\)
+- \\((\neg P \land \neg Q \land R)\\) → 成真赋值 (0,0,1) → \\(m_1\\)
+- \\((\neg P \land \neg Q \land \neg R)\\) → 成真赋值 (0,0,0) → \\(m_0\\)
+
 **说明**：
 - 第1步：蕴涵等值式，\\(P \to (Q \lor R) = \neg P \vee Q \vee R\\)
 - 第2步：蕴涵等值式，\\(A \to B = \neg A \vee B\\)
