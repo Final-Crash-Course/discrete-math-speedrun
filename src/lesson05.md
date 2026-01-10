@@ -837,8 +837,8 @@ D. \\((\forall x)(P(x) \to (\exists y)Q(x,y))\\)
    - 如果存在量词前面有全称量词，用函数替换
 
 **示例**：
-- \\\\(\\exists x \\forall y P(x,y)\\\\) → \\\\(\\forall y P(c,y)\\\\)（c为新常量）
-- \\\\(\\forall x \\exists y P(x,y)\\\\) → \\\\(\\forall x P(f(x),x)\\\\)（f为Skolem函数）
+- \\(\\exists x \\forall y P(x,y)\\) → \\(\\forall y P(c,y)\\)（c为新常量）
+- \\(\\forall x \\exists y P(x,y)\\) → \\(\\forall x P(f(x),x)\\)（f为Skolem函数）
 
 ### 💡 Herbrand定理
 
@@ -859,7 +859,7 @@ D. \\((\forall x)(P(x) \to (\exists y)Q(x,y))\\)
 **消解原理**是基于归结的推理方法，是自动定理证明的核心技术。
 
 **消解规则**：
-对于子句集，如果有 \\\\(C_1 \\lor L\\\\) 和 \\\\(C_2 \\lor \\neg L\\\\)，则可消解得到 \\\\(C_1 \\lor C_2\\\\)
+对于子句集，如果有 \\(C_1 \\lor L\\) 和 \\(C_2 \\lor \\neg L\\)，则可消解得到 \\(C_1 \\lor C_2\\)
 
 **步骤**：
 1. **化为子句集**：将公式化为合取范式，每个合取项为子句
@@ -868,37 +868,37 @@ D. \\((\forall x)(P(x) \to (\exists y)Q(x,y))\\)
 4. **归结**：如果得到空子句，则原公式为永假式
 
 **示例**：
-前提：\\\\(\\forall x(P(x) \\to Q(x))\\\\)，\\\\(\\exists x P(x)\\\\)
-结论：\\\\(\\exists x Q(x)\\\\)
+前提：\\(\\forall x(P(x) \\to Q(x))\\)，\\(\\exists x P(x)\\)
+结论：\\(\\exists x Q(x)\\)
 
 **证明过程**：
-- 子句1：\\\\(\\neg P(x) \\lor Q(x)\\\\)
-- 子句2：\\\\(P(c)\\\\)
-- 消解：得到 \\\\(Q(c)\\\\)
-- 结论：\\\\(\\exists x Q(x)\\\\) ✓
+- 子句1：\\(\\neg P(x) \\lor Q(x)\\)
+- 子句2：\\(P(c)\\)
+- 消解：得到 \\(Q(c)\\)
+- 结论：\\(\\exists x Q(x)\\) ✓
 
 ### 📚 扩展推理规则
 
 #### 归谬法（反证法）
-在谓词逻辑中，要证明 \\\\(A \\to B\\\\)，可以：
-1. 假设 \\\\(A \\land \\neg B\\\\)
+在谓词逻辑中，要证明 \\(A \\to B\\)，可以：
+1. 假设 \\(A \\land \\neg B\\)
 2. 推导出矛盾
-3. 得证 \\\\(A \\to B\\\\)
+3. 得证 \\(A \\to B\\)
 
 #### 附加前提法
-当结论为蕴涵式 \\\\(P \\to Q\\\\) 时：
-1. 将 \\\\(P\\\\) 作为附加前提引入
-2. 从前提和 \\\\(P\\\\) 推出 \\\\(Q\\\\)
-3. 得证 \\\\(P \\to Q\\\\)
+当结论为蕴涵式 \\(P \\to Q\\) 时：
+1. 将 \\(P\\) 作为附加前提引入
+2. 从前提和 \\(P\\) 推出 \\(Q\\)
+3. 得证 \\(P \\to Q\\)
 
 #### 重要推理模式
-1. **三段论**：\\\\(\\forall x(A(x) \\to B(x)), \\forall x(B(x) \\to C(x)) \\Rightarrow \\forall x(A(x) \\to C(x))\\\\)
-2. **换质位**：\\\\(\\forall x(A(x) \\to B(x)) \\Rightarrow \\forall x(\\neg B(x) \\to \\neg A(x))\\\\)
-3. **对偶推理**：\\\\(\\exists x A(x) \\land \\forall x(A(x) \\to B(x)) \\Rightarrow \\exists x B(x)\\\\)
+1. **三段论**：\\(\\forall x(A(x) \\to B(x)), \\forall x(B(x) \\to C(x)) \\Rightarrow \\forall x(A(x) \\to C(x))\\)
+2. **换质位**：\\(\\forall x(A(x) \\to B(x)) \\Rightarrow \\forall x(\\neg B(x) \\to \\neg A(x))\\)
+3. **对偶推理**：\\(\\exists x A(x) \\land \\forall x(A(x) \\to B(x)) \\Rightarrow \\exists x B(x)\\)
 
 ### 📝 高级例题
 
-**例题1**：证明 \\\\(\\forall x(P(x) \\to Q(x)), \\exists x P(x), \\forall x(Q(x) \\to R(x)) \\Rightarrow \\exists x R(x)\\\\)
+**例题1**：证明 \\(\\forall x(P(x) \\to Q(x)), \\exists x P(x), \\forall x(Q(x) \\to R(x)) \\Rightarrow \\exists x R(x)\\)
 
 <details>
 <summary><strong>点击查看答案</strong></summary>
@@ -906,25 +906,25 @@ D. \\((\forall x)(P(x) \to (\exists y)Q(x,y))\\)
 **证明**（使用消解原理）：
 
 **步骤1**：化为子句集
-- \\\\(\\neg P(x) \\lor Q(x)\\\\)
-- \\\\(P(c)\\\\)
-- \\\\(\\neg Q(x) \\lor R(x)\\\\)
-- 目标否定：\\\\(\\forall x \\neg R(x)\\\\) → \\\\(\\neg R(x)\\\\)
+- \\(\\neg P(x) \\lor Q(x)\\)
+- \\(P(c)\\)
+- \\(\\neg Q(x) \\lor R(x)\\)
+- 目标否定：\\(\\forall x \\neg R(x)\\) → \\(\\neg R(x)\\)
 
 **步骤2**：消解过程
-- \\\\(P(c)\\\\) 和 \\\\(\\neg P(x) \\lor Q(x)\\\\) → \\\\(Q(c)\\\\)
-- \\\\(Q(c)\\\\) 和 \\\\(\\neg Q(x) \\lor R(x)\\\\) → \\\\(R(c)\\\\)
-- \\\\(R(c)\\\\) 和 \\\\(\\neg R(x)\\\\) → 空子句 ✓
+- \\(P(c)\\) 和 \\(\\neg P(x) \\lor Q(x)\\) → \\(Q(c)\\)
+- \\(Q(c)\\) 和 \\(\\neg Q(x) \\lor R(x)\\) → \\(R(c)\\)
+- \\(R(c)\\) 和 \\(\\neg R(x)\\) → 空子句 ✓
 
-**得证**：存在 \\\\(x\\\\) 使得 \\\\(R(x)\\\\) 成立。
+**得证**：存在 \\(x\\) 使得 \\(R(x)\\) 成立。
 
 </details>
 
 ---
 
 **例题2**：使用Skolem化和消解原理证明
-前提：\\\\(\\forall x \\exists y P(x,y)\\\\)
-结论：\\\\(\\exists y \\forall x P(x,y)\\\\) 是否成立？
+前提：\\(\\forall x \\exists y P(x,y)\\)
+结论：\\(\\exists y \\forall x P(x,y)\\) 是否成立？
 
 <details>
 <summary><strong>点击查看答案</strong></summary>
@@ -932,17 +932,17 @@ D. \\((\forall x)(P(x) \to (\exists y)Q(x,y))\\)
 **分析**：
 
 **Skolem化前提**：
-- \\\\(\\forall x \\exists y P(x,y)\\\\) → \\\\(\\forall x P(x, f(x))\\\\)
+- \\(\\forall x \\exists y P(x,y)\\) → \\(\\forall x P(x, f(x))\\)
 
 **检查结论**：
-- \\\\(\\exists y \\forall x P(x,y)\\\\) 要求存在一个固定的 \\\\(y\\\\) 使得对所有 \\\\(x\\\\) 都成立
+- \\(\\exists y \\forall x P(x,y)\\) 要求存在一个固定的 \\(y\\) 使得对所有 \\(x\\) 都成立
 
 **反例**：
-设论域为自然数，\\\\(P(x,y)\\\\) 表示 \\\\(y > x\\\\)
-- 前提：对每个 \\\\(x\\\\)，存在 \\\\(y\\\\)（如 \\\\(y=x+1\\\\)）使得 \\\\(y > x\\\\) ✓
-- 结论：存在固定的 \\\\(y\\\\) 使得对所有 \\\\(x\\\\) 都有 \\\\(y > x\\\\) ✗
+设论域为自然数，\\(P(x,y)\\) 表示 \\(y > x\\)
+- 前提：对每个 \\(x\\)，存在 \\(y\\)（如 \\(y=x+1\\)）使得 \\(y > x\\) ✓
+- 结论：存在固定的 \\(y\\) 使得对所有 \\(x\\) 都有 \\(y > x\\) ✗
 
-**结论**：该推理**不成立**，因为Skolem函数依赖于 \\\\(x\\\\)。
+**结论**：该推理**不成立**，因为Skolem函数依赖于 \\(x\\)。
 
 </details>
 
@@ -950,7 +950,7 @@ D. \\((\forall x)(P(x) \to (\exists y)Q(x,y))\\)
 
 ### 🎯 常见错误与注意事项
 
-1. **量词顺序**：\\\\(\\forall x \\exists y\\\\) 不等价于 \\\\(\\exists y \\forall x\\\\)
+1. **量词顺序**：\\(\\forall x \\exists y\\) 不等价于 \\(\\exists y \\forall x\\)
 2. **换名规则**：约束变元可以换名，自由变元不能换名
 3. **辖域理解**：注意量词的作用范围
 4. **Skolem函数**：不能随意引入，必须保持等值性
@@ -996,7 +996,7 @@ D. \\((\forall x)(P(x) \to (\exists y)Q(x,y))\\)
 
 ### 易错点提醒
 
-1. ❌ \\\\(\\forall x \\exists y P(x,y) \\\\Leftrightarrow \\exists y \\forall x P(x,y)\\\\)（不等价！）
+1. ❌ \\(\\forall x \\exists y P(x,y) \\\\Leftrightarrow \\exists y \\forall x P(x,y)\\)（不等价！）
 2. ❌ 忽略换名规则导致变元冲突
 3. ❌ Skolem函数依赖关系错误
 4. ❌ 消解时未考虑所有可能的子句对
