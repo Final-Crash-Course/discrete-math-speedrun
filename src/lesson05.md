@@ -824,6 +824,148 @@ D. \\((\forall x)(P(x) \to (\exists y)Q(x,y))\\)
 
 ---
 
+## 3. 谓词逻辑的其他重要概念
+
+### 📖 Skolem范式（Skolemization）
+
+**Skolem范式**是前束范式的一种特殊形式，通过引入Skolem函数消除存在量词。
+
+**Skolem化步骤**：
+1. 先将公式化为前束范式
+2. 从左到右处理存在量词：
+   - 如果存在量词前面没有全称量词，用常量替换
+   - 如果存在量词前面有全称量词，用函数替换
+
+**示例**：
+- \\\\(\\exists x \\forall y P(x,y)\\\\) → \\\\(\\forall y P(c,y)\\\\)（c为新常量）
+- \\\\(\\forall x \\exists y P(x,y)\\\\) → \\\\(\\forall x P(f(x),x)\\\\)（f为Skolem函数）
+
+### 💡 Herbrand定理
+
+**Herbrand定理**：谓词公式是永假式当且仅当它的所有Herbrand解释下都为假。
+
+**基本概念**：
+- **Herbrand全域**：由常量和函数构成的所有项的集合
+- **Herbrand解释**：在Herbrand全域上的解释
+- **Herbrand基**：所有原子公式的集合
+
+**定理意义**：
+- 为自动定理证明提供理论基础
+- 将无限域问题转化为有限域问题
+- 是现代自动推理系统的基础
+
+### 🔍 消解原理（Resolution Principle）
+
+**消解原理**是基于归结的推理方法，是自动定理证明的核心技术。
+
+**消解规则**：
+对于子句集，如果有 \\\\(C_1 \\lor L\\\\) 和 \\\\(C_2 \\lor \\neg L\\\\)，则可消解得到 \\\\(C_1 \\lor C_2\\\\)
+
+**步骤**：
+1. **化为子句集**：将公式化为合取范式，每个合取项为子句
+2. **Skolem化**：消除存在量词
+3. **消解**：反复应用消解规则
+4. **归结**：如果得到空子句，则原公式为永假式
+
+**示例**：
+前提：\\\\(\\forall x(P(x) \\to Q(x))\\\\)，\\\\(\\exists x P(x)\\\\)
+结论：\\\\(\\exists x Q(x)\\\\)
+
+**证明过程**：
+- 子句1：\\\\(\\neg P(x) \\lor Q(x)\\\\)
+- 子句2：\\\\(P(c)\\\\)
+- 消解：得到 \\\\(Q(c)\\\\)
+- 结论：\\\\(\\exists x Q(x)\\\\) ✓
+
+### 📚 扩展推理规则
+
+#### 归谬法（反证法）
+在谓词逻辑中，要证明 \\\\(A \\to B\\\\)，可以：
+1. 假设 \\\\(A \\land \\neg B\\\\)
+2. 推导出矛盾
+3. 得证 \\\\(A \\to B\\\\)
+
+#### 附加前提法
+当结论为蕴涵式 \\\\(P \\to Q\\\\) 时：
+1. 将 \\\\(P\\\\) 作为附加前提引入
+2. 从前提和 \\\\(P\\\\) 推出 \\\\(Q\\\\)
+3. 得证 \\\\(P \\to Q\\\\)
+
+#### 重要推理模式
+1. **三段论**：\\\\(\\forall x(A(x) \\to B(x)), \\forall x(B(x) \\to C(x)) \\Rightarrow \\forall x(A(x) \\to C(x))\\\\)
+2. **换质位**：\\\\(\\forall x(A(x) \\to B(x)) \\Rightarrow \\forall x(\\neg B(x) \\to \\neg A(x))\\\\)
+3. **对偶推理**：\\\\(\\exists x A(x) \\land \\forall x(A(x) \\to B(x)) \\Rightarrow \\exists x B(x)\\\\)
+
+### 📝 高级例题
+
+**例题1**：证明 \\\\(\\forall x(P(x) \\to Q(x)), \\exists x P(x), \\forall x(Q(x) \\to R(x)) \\Rightarrow \\exists x R(x)\\\\)
+
+<details>
+<summary><strong>点击查看答案</strong></summary>
+
+**证明**（使用消解原理）：
+
+**步骤1**：化为子句集
+- \\\\(\\neg P(x) \\lor Q(x)\\\\)
+- \\\\(P(c)\\\\)
+- \\\\(\\neg Q(x) \\lor R(x)\\\\)
+- 目标否定：\\\\(\\forall x \\neg R(x)\\\\) → \\\\(\\neg R(x)\\\\)
+
+**步骤2**：消解过程
+- \\\\(P(c)\\\\) 和 \\\\(\\neg P(x) \\lor Q(x)\\\\) → \\\\(Q(c)\\\\)
+- \\\\(Q(c)\\\\) 和 \\\\(\\neg Q(x) \\lor R(x)\\\\) → \\\\(R(c)\\\\)
+- \\\\(R(c)\\\\) 和 \\\\(\\neg R(x)\\\\) → 空子句 ✓
+
+**得证**：存在 \\\\(x\\\\) 使得 \\\\(R(x)\\\\) 成立。
+
+</details>
+
+---
+
+**例题2**：使用Skolem化和消解原理证明
+前提：\\\\(\\forall x \\exists y P(x,y)\\\\)
+结论：\\\\(\\exists y \\forall x P(x,y)\\\\) 是否成立？
+
+<details>
+<summary><strong>点击查看答案</strong></summary>
+
+**分析**：
+
+**Skolem化前提**：
+- \\\\(\\forall x \\exists y P(x,y)\\\\) → \\\\(\\forall x P(x, f(x))\\\\)
+
+**检查结论**：
+- \\\\(\\exists y \\forall x P(x,y)\\\\) 要求存在一个固定的 \\\\(y\\\\) 使得对所有 \\\\(x\\\\) 都成立
+
+**反例**：
+设论域为自然数，\\\\(P(x,y)\\\\) 表示 \\\\(y > x\\\\)
+- 前提：对每个 \\\\(x\\\\)，存在 \\\\(y\\\\)（如 \\\\(y=x+1\\\\)）使得 \\\\(y > x\\\\) ✓
+- 结论：存在固定的 \\\\(y\\\\) 使得对所有 \\\\(x\\\\) 都有 \\\\(y > x\\\\) ✗
+
+**结论**：该推理**不成立**，因为Skolem函数依赖于 \\\\(x\\\\)。
+
+</details>
+
+---
+
+### 🎯 常见错误与注意事项
+
+1. **量词顺序**：\\\\(\\forall x \\exists y\\\\) 不等价于 \\\\(\\exists y \\forall x\\\\)
+2. **换名规则**：约束变元可以换名，自由变元不能换名
+3. **辖域理解**：注意量词的作用范围
+4. **Skolem函数**：不能随意引入，必须保持等值性
+5. **消解完备性**：消解是完备的，但可能无限循环
+
+### 💡 技巧总结
+
+1. **快速判断**：先看量词顺序和否定位置
+2. **化简策略**：先用等值式化简，再用推理规则
+3. **反证法**：复杂推理常用反证法
+4. **子句化**：自动证明时先化为子句集
+5. **Skolem化**：注意函数依赖关系
+
+---
+
 ## 📌 总结
 
 ### 关键要点
@@ -849,3 +991,224 @@ D. \\((\forall x)(P(x) \to (\exists y)Q(x,y))\\)
 - **量词否定**：否定全称 = 存在否定，否定存在 = 全称否定
 - **前束范式**：量词全部提到最前面
 - **推理步骤**：消去量词 → 命题逻辑推理 → 引入量词
+- **Skolem化**：存在量词前有全称量词时用函数，否则用常量
+- **消解原理**：子句消解得空子句则证明完成
+
+### 易错点提醒
+
+1. ❌ \\\\(\\forall x \\exists y P(x,y) \\\\Leftrightarrow \\exists y \\forall x P(x,y)\\\\)（不等价！）
+2. ❌ 忽略换名规则导致变元冲突
+3. ❌ Skolem函数依赖关系错误
+4. ❌ 消解时未考虑所有可能的子句对
+
+---
+
+## 5. 高级练习题与真题训练 🔥必考重点
+
+### 练习10（前束范式转换）
+
+求下列公式的前束范式：
+
+(1) \neg [\forall x \exists y (P(x) \to Q(y)) \land \exists z R(z)]
+
+(2) \forall x (P(x) \to \exists y Q(x,y)) \to \exists z R(z)
+
+<details>
+<summary><strong>点击查看答案</strong></summary>
+
+**解答**：
+
+**(1) \neg [\forall x \exists y (P(x) \to Q(y)) \land \exists z R(z)]**
+
+\begin{align}
+&\neg [\forall x \exists y (P(x) \to Q(y)) \land \exists z R(z)] \\
+\Leftrightarrow &\neg \forall x \exists y (P(x) \to Q(y)) \lor \neg \exists z R(z) \\
+\Leftrightarrow &\exists x \neg \exists y (P(x) \to Q(y)) \lor \forall z \neg R(z) \\
+\Leftrightarrow &\exists x \forall y \neg (P(x) \to Q(y)) \lor \forall z \neg R(z) \\
+\Leftrightarrow &\exists x \forall y (P(x) \land \neg Q(y)) \lor \forall z \neg R(z) \\
+\Leftrightarrow &\exists x \forall y \forall z [(P(x) \land \neg Q(y)) \lor \neg R(z)]
+\end{align}
+
+**答案**：\exists x \forall y \forall z [(P(x) \land \neg Q(y)) \lor \neg R(z)]
+
+**(2) \forall x (P(x) \to \exists y Q(x,y)) \to \exists z R(z)**
+
+\begin{align}
+&\forall x (P(x) \to \exists y Q(x,y)) \to \exists z R(z) \\
+\Leftrightarrow &\neg \forall x (P(x) \to \exists y Q(x,y)) \lor \exists z R(z) \\
+\Leftrightarrow &\exists x \neg (P(x) \to \exists y Q(x,y)) \lor \exists z R(z) \\
+\Leftrightarrow &\exists x \neg (\neg P(x) \lor \exists y Q(x,y)) \lor \exists z R(z) \\
+\Leftrightarrow &\exists x (P(x) \land \neg \exists y Q(x,y)) \lor \exists z R(z) \\
+\Leftrightarrow &\exists x (P(x) \land \forall y \neg Q(x,y)) \lor \exists z R(z) \\
+\Leftrightarrow &\exists x \forall y (P(x) \land \neg Q(x,y)) \lor \exists z R(z) \\
+\Leftrightarrow &\exists x \forall y \exists z [(P(x) \land \neg Q(x,y)) \lor R(z)]
+\end{align}
+
+**答案**：\exists x \forall y \exists z [(P(x) \land \neg Q(x,y)) \lor R(z)]
+
+</details>
+
+---
+
+### 练习11（真值计算）
+
+设个体域 D = \{1, 2, 3\}，谓词 P(x,y) 表示 x \leq y，求下式的真值：
+
+\forall x \exists y [P(x,y) \to \exists z (P(x,z) \land P(z,y))]
+
+<details>
+<summary><strong>点击查看答案</strong></summary>
+
+**解答**：
+
+**步骤1**：分析公式结构
+- 需要验证：对每个 x，存在 y，使得如果 x \leq y，则存在 z 满足 x \leq z \leq y
+
+**步骤2**：逐个验证 x = 1, 2, 3
+
+- **当 x = 1**：
+  - 取 y = 1：P(1,1) = T，需要 \exists z (P(1,z) \land P(z,1))
+  - 取 z = 1：P(1,1) \land P(1,1) = T \land T = T ✓
+
+- **当 x = 2**：
+  - 取 y = 2：P(2,2) = T，需要 \exists z (P(2,z) \land P(z,2))
+  - 取 z = 2：P(2,2) \land P(2,2) = T \land T = T ✓
+
+- **当 x = 3**：
+  - 取 y = 3：P(3,3) = T，需要 \exists z (P(3,z) \land P(z,3))
+  - 取 z = 3：P(3,3) \land P(3,3) = T \land T = T ✓
+
+**步骤3**：结论
+对所有 x \in D，都能找到合适的 y，使得公式成立。
+
+**答案**：真（T）
+
+**说明**：这个公式实际上表达了"每个元素都存在自反性"，在有序关系中总是成立的。
+
+</details>
+
+---
+
+### 练习12（推理证明）
+
+构造推理证明：
+
+**前提**：
+1. \forall x [F(x) \to (G(x) \lor H(x))]
+2. \exists x [F(x) \land \neg G(x)]
+3. \forall x [H(x) \to K(x)]
+
+**结论**：\exists x K(x)
+
+<details>
+<summary><strong>点击查看答案</strong></summary>
+
+**证明**：
+
+| 步骤 | 公式 | 依据 |
+|------|------|------|
+| ① | \exists x [F(x) \land \neg G(x)] | 前提引入 |
+| ② | F(a) \land \neg G(a) | ① \exists - |
+| ③ | F(a) | ② 化简律 |
+| ④ | \neg G(a) | ② 化简律 |
+| ⑤ | \forall x [F(x) \to (G(x) \lor H(x))] | 前提引入 |
+| ⑥ | F(a) \to (G(a) \lor H(a)) | ⑤ \forall - |
+| ⑦ | G(a) \lor H(a) | ③⑥ 假言推理 |
+| ⑧ | H(a) | ④⑦ 析取三段论 |
+| ⑨ | \forall x [H(x) \to K(x)] | 前提引入 |
+| ⑩ | H(a) \to K(a) | ⑨ \forall - |
+| ⑪ | K(a) | ⑧⑩ 假言推理 |
+| ⑫ | \exists x K(x) | ⑪ \exists + |
+
+**得证**：\exists x K(x) 是有效结论。
+
+**证明思路**：
+1. 从前提2引入个体 a 使得 F(a) \land \neg G(a)
+2. 结合前提1得到 H(a)
+3. 结合前提3得到 K(a)
+4. 使用存在量词引入规则得到结论
+
+</details>
+
+---
+
+### 练习13（归谬法证明）
+
+使用归谬法证明：
+
+**前提**：\forall x (P(x) \to Q(x))，\exists x P(x)
+
+**结论**：\exists x Q(x)
+
+<details>
+<summary><strong>点击查看答案</strong></summary>
+
+**证明**：
+
+| 步骤 | 公式 | 依据 |
+|------|------|------|
+| ① | \neg \exists x Q(x) | 结论的否定引入 |
+| ② | \forall x \neg Q(x) | ① 置换 |
+| ③ | \exists x P(x) | 前提引入 |
+| ④ | P(a) | ③ \exists - |
+| ⑤ | \forall x (P(x) \to Q(x)) | 前提引入 |
+| ⑥ | P(a) \to Q(a) | ⑤ \forall - |
+| ⑦ | Q(a) | ④⑥ 假言推理 |
+| ⑧ | \neg Q(a) | ② \forall - |
+| ⑨ | Q(a) \land \neg Q(a) | ⑦⑧ 合取（矛盾！）|
+
+**分析**：
+- 第⑨步得到矛盾 Q(a) \land \neg Q(a)
+- 说明假设 \neg \exists x Q(x) 不成立
+- 因此 \exists x Q(x) 成立
+
+**得证**：\exists x Q(x) 是有效结论。
+
+**证明思路**：
+1. 假设结论不成立（反证法）
+2. 从前提推出矛盾
+3. 证明原结论必然成立
+
+</details>
+
+---
+
+### 练习14（Skolem化应用）
+
+判断下列推理是否有效，并说明理由：
+
+**前提**：\forall x \exists y P(x,y)
+
+**结论**：\exists y \forall x P(x,y)
+
+<details>
+<summary><strong>点击查看答案</strong></summary>
+
+**解答**：
+
+**分析**：
+
+**前提**：\forall x \exists y P(x,y)
+- 对每个 x，存在某个 y（可能依赖于 x）使得 P(x,y) 成立
+
+**结论**：\exists y \forall x P(x,y)
+- 存在一个固定的 y，对所有 x 都有 P(x,y) 成立
+
+**Skolem化**：
+- 前提 Skolem化：\forall x P(x, f(x))（f 是 Skolem 函数）
+- 结论 Skolem化：\forall x P(x, c)（c 是常量）
+
+**判断**：推理**无效**
+
+**反例**：
+设论域为自然数，P(x,y) 表示 y > x
+
+- 前提：对每个 x，存在 y = x+1 使得 y > x ✓
+- 结论：存在固定的 y 使得对所有 x 都有 y > x ✗（不可能）
+
+**结论**：\forall x \exists y P(x,y) \not\Rightarrow \exists y \forall x P(x,y)
+
+**关键点**：量词顺序不能随意交换！\forall x \exists y 和 \exists y \forall x 不等价。
+
+</details>
+
